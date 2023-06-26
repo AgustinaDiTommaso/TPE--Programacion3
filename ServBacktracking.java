@@ -8,7 +8,6 @@ public class ServBacktracking {
     public List<Arco<Integer>> mejorSolucion;
     public int distanciaTotal;
     public int distanciaActual;
-    public  DisjointSet disjointSet;
     public int metrica;
 
     public ServBacktracking(List<Integer> estaciones, List<Arco<Integer>> tuneles){
@@ -25,16 +24,16 @@ public class ServBacktracking {
         List<Arco<Integer>> solucionActual= new ArrayList<Arco<Integer>>();
 
         // Se crea un clase DisjointSet para trabajar con conjuntos disjuntos
-        disjointSet= new DisjointSet(estaciones.size());  
+        DisjointSet disjointSet= new DisjointSet(estaciones.size());  
         int tunelActual=0;
-        this.backtracking ( solucionActual,tunelActual);
+        this.backtracking ( solucionActual,tunelActual, disjointSet);
         
         
         return mejorSolucion;
     }
 
-    private void backtracking(List<Arco<Integer>> solActual, int tunelActual){
-        //this.metrica++;
+    private void backtracking(List<Arco<Integer>> solActual, int tunelActual, DisjointSet disjointSet){
+        //this.metrica++
     	//Si la solucion no esta vacia y la cantidad de elementos es igual a la cantidad de vertices -1
         if(!solActual.isEmpty() && solActual.size()==(estaciones.size()-1)){
             //Si la distancia actual es menor que la distancia total o aun no fue guardada ninguna
@@ -76,7 +75,7 @@ public class ServBacktracking {
 	                    this.distanciaActual+=distancia;
 	
 	                    // LLamado recursivo
-	                    backtracking(solActual, i+1);
+	                    backtracking(solActual, i+1, disjointSet);
 	
 	                    // resto la distancia que habia sido agregada
 	                    this.distanciaActual-=distancia;
@@ -93,4 +92,7 @@ public class ServBacktracking {
 		
         }
     }
+	public int getMetrica(){
+	        return this.metrica;
+	    }
 }

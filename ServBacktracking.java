@@ -51,38 +51,43 @@ public class ServBacktracking {
             //por cada arco que tenga el vertice que viene por parámetro
            for(int i=tunelActual; i<tuneles.size();i++){
                 this.metrica++;
-                Arco<Integer> tunel = tuneles.get(i);         
-                // verifico que no esten dentro del mismo conjuntos
-                int x= tunel.getVerticeOrigen()-1;
-                int y= tunel.getVerticeDestino()-1;         
-                
-                int padreOrigen= disjointSet.find(tunel.getVerticeOrigen()-1);
-                int padreDestino= disjointSet.find(tunel.getVerticeDestino()-1);
-
-                if(padreOrigen !=padreDestino){
-                    //clono el conjunto disjunto para guardar su estado
-                    DisjointSet disjointSetClone= disjointSet.clone();
-                    //Si no estaban unidos, los uno
-                    disjointSet.union(x, y); 
-
-                    //Añado el arco a la solucion                      
-                    solActual.add(tunel);
-                    //Sumo la distancia
-                    int distancia= tunel.getEtiqueta();
-                    this.distanciaActual+=distancia;
-
-                    // LLamado recursivo
-                    backtracking(solActual, i+1);
-
-                    // resto la distancia que habia sido agregada
-                    this.distanciaActual-=distancia;
-
-                    //remueve el último elemento añadido a la solución
-                    solActual.remove(solActual.size()-1);		  
-                    //Vuelvo atras el conjunto disjunto         
-                    disjointSet = disjointSetClone;
-
-                }            
+                Arco<Integer> tunel = tuneles.get(i);   
+		   
+		//PODA: Si la distancia actual más las distancia que se quiere agregar ya es mayor a la mejor distancia total no continua, 
+                //a no ser que la mejor distancia total todavia no haya sido ingresada  
+                if((this.distanciaActual+tunel.getEtiqueta())<this.distanciaTotal || this.distanciaTotal==0 ){
+	                // verifico que no estén dentro del mismo conjunto
+	                int x= tunel.getVerticeOrigen()-1;
+	                int y= tunel.getVerticeDestino()-1;         
+	                
+	                int padreOrigen= disjointSet.find(tunel.getVerticeOrigen()-1);
+	                int padreDestino= disjointSet.find(tunel.getVerticeDestino()-1);
+	
+	                if(padreOrigen !=padreDestino){
+	                    //clono el conjunto disjunto para guardar su estado
+	                    DisjointSet disjointSetClone= disjointSet.clone();
+	                    //Si no estaban unidos, los uno
+	                    disjointSet.union(x, y); 
+	
+	                    //Añado el arco a la solucion                      
+	                    solActual.add(tunel);
+	                    //Sumo la distancia
+	                    int distancia= tunel.getEtiqueta();
+	                    this.distanciaActual+=distancia;
+	
+	                    // LLamado recursivo
+	                    backtracking(solActual, i+1);
+	
+	                    // resto la distancia que habia sido agregada
+	                    this.distanciaActual-=distancia;
+	
+	                    //remueve el último elemento añadido a la solución
+	                    solActual.remove(solActual.size()-1);		  
+	                    //Vuelvo atras el conjunto disjunto         
+	                    disjointSet = disjointSetClone;
+	
+	                }            
+		}
 
             }
 		

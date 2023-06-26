@@ -70,23 +70,16 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 	/**
 	* Complejidad: O(h) donde h es la cantidad de arcos  
-	* debido a que recorre todos los arcos del vertice origen(id1), 
+	* debido a que utiliza el metodo obtener arco el cual tiene complejidad O(h) 
 	* buscando el arco que se debe borrar.
 	*/
 
 	@Override
 	public void borrarArco(int verticeId1, int verticeId2) {
 
-		if(this.contieneVertice(verticeId1) && this.contieneVertice(verticeId2)){
-			
-			List<Arco<T>> arcos= this.vertices.get(verticeId1);
-			
-			for(int i=0; i<arcos.size();i++){
-				if(arcos.get(i).getVerticeDestino()== verticeId2){
-					arcos.remove(i);
-				}
-			}
-
+		if(this.contieneVertice(verticeId1) && this.contieneVertice(verticeId2)){			
+			Arco<T> arco= this.obtenerArco(verticeId1, verticeId2);
+			vertices.remove(verticeId1, arco);
 		}
 
 	}

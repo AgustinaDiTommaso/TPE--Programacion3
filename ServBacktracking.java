@@ -33,7 +33,7 @@ public class ServBacktracking {
     }
 
     private void backtracking(List<Arco<Integer>> solActual, int tunelActual, DisjointSet disjointSet){
-        //this.metrica++
+        this.metrica++
     	//Si la solucion no esta vacia y la cantidad de elementos es igual a la cantidad de vertices -1
         if(!solActual.isEmpty() && solActual.size()==(estaciones.size()-1)){
             //Si la distancia actual es menor que la distancia total o aun no fue guardada ninguna
@@ -49,7 +49,7 @@ public class ServBacktracking {
         }else{
             //por cada arco que tenga el vertice que viene por parámetro
            for(int i=tunelActual; i<tuneles.size();i++){
-                this.metrica++;
+                
                 Arco<Integer> tunel = tuneles.get(i);   
 		   
 		//PODA: Si la distancia actual más las distancia que se quiere agregar ya es mayor a la mejor distancia total no continua, 

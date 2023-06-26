@@ -11,15 +11,11 @@ import java.util.List;
 public class CSVReader {
 
 	private String path;
-	//--	
-	//public Grafo<Integer> grafo;
 	public List<Arco<Integer>> tuneles;
 	public List<Integer> estaciones;
 	
 	public CSVReader(String path) {
 		this.path = path;
-		//--
-		//this.grafo= new GrafoNoDirigido<Integer>();
 		this.tuneles = new ArrayList<Arco<Integer>>();
 		this.estaciones = new ArrayList<Integer>();
 	}
@@ -37,22 +33,15 @@ public class CSVReader {
 			Integer destino = Integer.parseInt(line[1].trim().substring(1));
 			Integer etiqueta = Integer.parseInt(line[2].trim());
 			
-			// Aca instanciar lo que necesiten en base a los datos leidos
-			//---
-		
+			//Guarda la informacion en una lista de arcos		
 			tuneles.add(new Arco<Integer>(origen, destino, etiqueta));
-
+			// Guarda las estaciones en una lista de enteros
 			 if(!estaciones.contains(origen)){
 				estaciones.add(origen);
 			 }
 			 if(!estaciones.contains(destino)){
 				estaciones.add(destino);
 			 }
-			 /*
-			//agrega vertice y arco al grafo
-			this.grafo.agregarVertice(origen);
-			this.grafo.agregarVertice(destino);
-			this.grafo.agregarArco(origen, destino, etiqueta);*/
 		}
 		
 	}
@@ -83,10 +72,7 @@ public class CSVReader {
 		
 		return lines;
 	}
-	/* 	
-	public Grafo<Integer> getInfo(){
-		return this.grafo;//rompe privacidad??
-	}*/
+	
 	public List<Arco<Integer>> getTuneles(){
 		return this.tuneles;
 	}

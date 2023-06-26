@@ -30,8 +30,8 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 
 	/**
-	* Complejidad: O(h) donde h es la cantidad de arcos debido a que en el peor de los casos se deben 
-	* recorrer todos los arcos para verificar que el vértice no sea el destino de ninguno  
+	* Complejidad: O(h^2) donde h es la cantidad de arcos debido a que obtiene todos los arcos, y luego los recorre 
+	 * ejecutando el método borrarArco que tiene complejidad O(h) 
 	*/
 	@Override
 	public void borrarVertice(int verticeId) {

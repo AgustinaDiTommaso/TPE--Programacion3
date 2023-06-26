@@ -55,6 +55,9 @@ public class ServicioGreedy {
     }
            
     public int getDistancia(){
-        return distancia;
+        return this.distancia;
+    }
+     public int getMetrica(){
+        return this.metrica;
     }
 }

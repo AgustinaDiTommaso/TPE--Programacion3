@@ -92,6 +92,9 @@ public class ServBacktracking {
 		
         }
     }
+	public int getDistanciaTotal(){
+        return this.distanciaTotal;
+    }
 	public int getMetrica(){
 	        return this.metrica;
 	    }

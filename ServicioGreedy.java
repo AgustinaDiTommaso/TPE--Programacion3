@@ -8,7 +8,7 @@ public class ServicioGreedy {
     private List<Arco<Integer>> tuneles;
     private List<Integer> estaciones;
     public List<Arco<Integer>> solucion;
-    private int distancia;
+    public int distancia;
     public int metrica;
 
     
@@ -22,34 +22,38 @@ public class ServicioGreedy {
     }
 
 
-    public List<Arco<Integer>> dijkstra(){//cambiar nombre
-        //ordena según la distancia
+    public List<Arco<Integer>> greedy(){
+        // Ordena según la distancia de menor a mayor
         Collections.sort(tuneles);
         
+        //Crea un conjunto disjunto
         DisjointSet disjointSet= new DisjointSet(estaciones.size());  
 
+        //Por cada túnel existente
         for(int i=0; i<tuneles.size();i++){
-            //this.metrica++;
             Arco<Integer> tunel= this.tuneles.get(i);          
+            this.metrica++;
             
-            
-            //busca el padre de origen y el padre del destino
-            //si son distintos 
+            //Busca el padre de origen y el padre del destino          
 
-                if(solucion.size()< (estaciones.size()-1)){
-                    //this.metrica++;
+            if(solucion.size()< (estaciones.size()-1)){
 
-                    int padreOrigen= disjointSet.find(tunel.getVerticeOrigen()-1);
-                    int padreDestino= disjointSet.find(tunel.getVerticeDestino()-1);
+                int x= tunel.getVerticeOrigen()-1;
+                int y= tunel.getVerticeDestino()-1;
 
-                    
-                    if(padreOrigen!=padreDestino){
-                        disjointSet.union((tunel.getVerticeDestino()-1), (tunel.getVerticeOrigen()-1));
-                        this.metrica++;
-                        solucion.add(tunel);
-                        this.distancia+=tunel.getEtiqueta();
-                    }
+                //Si son distintos los padres
+                if(!(disjointSet.mismoConjunto(x,y))){
+
+                    //Une los dos valores
+                    disjointSet.union(x, y);    
+
+                    //Añade el túnel a la solución               
+                    solucion.add(tunel);
+
+                    //Incrementa la distancia
+                    this.distancia+=tunel.getEtiqueta();
                 }
+            }
         }
             return solucion;
     }
@@ -57,7 +61,7 @@ public class ServicioGreedy {
     public int getDistancia(){
         return this.distancia;
     }
-     public int getMetrica(){
+    public int getMetrica(){
         return this.metrica;
     }
 }

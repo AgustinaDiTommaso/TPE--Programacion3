@@ -1,3 +1,4 @@
+
 public class DisjointSet implements Cloneable{
     private int[] parent;
     private int[] rank;
@@ -15,14 +16,13 @@ public class DisjointSet implements Cloneable{
 
     // Encuentra el representante (padre) del conjunto al que pertenece el elemento
     public int find(int x) {
-        if (parent[x] != x) {
-            // Realizar la compresión de ruta para la optimización
+        if (parent[x] != x) {            
             parent[x] = find(parent[x]);
         }
         return parent[x];
     }
 
-    // Unir dos conjuntos basados ​​en rangos utilizando la heurística de unión de rangos
+    // Unir dos conjuntos 
     public void union(int x, int y) {
         int rootX = find(x);
         int rootY = find(y);
@@ -40,6 +40,11 @@ public class DisjointSet implements Cloneable{
             rank[rootX]++;
         }
     }
+
+    public boolean mismoConjunto(int x, int y){
+        return find(x)==find(y);
+    }
+
     public DisjointSet clone(){
         try{
             DisjointSet cloned= (DisjointSet) super.clone();

@@ -47,9 +47,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 			this.vertices.remove(verticeId);
 
 		}
-
 	}
-
 	
 	/**
 	* Complejidad: O(h) donde h es la cantidad de arcos debido a que implementa la funcionalidad
@@ -79,7 +77,10 @@ public class GrafoDirigido<T> implements Grafo<T> {
 
 		if(this.contieneVertice(verticeId1) && this.contieneVertice(verticeId2)){			
 			Arco<T> arco= this.obtenerArco(verticeId1, verticeId2);
-			vertices.remove(verticeId1, arco);
+			if(arco!=null){
+				vertices.remove(verticeId1, arco);
+			}
+			
 		}
 
 	}

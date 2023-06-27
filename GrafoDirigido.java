@@ -78,7 +78,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 		if(this.contieneVertice(verticeId1) && this.contieneVertice(verticeId2)){			
 			Arco<T> arco= this.obtenerArco(verticeId1, verticeId2);
 			if(arco!=null){
-				vertices.remove(verticeId1, arco);
+				vertices.get(verticeId1).remove(arco);
 			}
 			
 		}

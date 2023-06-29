@@ -27,7 +27,7 @@ public class ServBacktracking {
         DisjointSet disjointSet = new DisjointSet(estaciones.size());
 
         int tunelActual = 0;
-        this.backtracking(solucionActual, tunelActual, disjointSet);//O(2^(n-1))
+        this.backtracking(solucionActual, tunelActual, disjointSet);//O(2^(n-1)*e)
 
         return mejorSolucion;
     }
@@ -59,13 +59,13 @@ public class ServBacktracking {
                     int x = tunel.getVerticeOrigen() - 1;
                     int y = tunel.getVerticeDestino() - 1;
 
-                    if (!(disjointSet.mismoConjunto(x, y))) {
+                    if (!(disjointSet.mismoConjunto(x, y))) { //O(e)
 
                         // Clono el conjunto disjunto para guardar su estado
-                        DisjointSet disjointSetClone = disjointSet.clone();
+                        DisjointSet disjointSetClone = disjointSet.clone(); 
 
                         //Unión de las estaciones
-                        disjointSet.union(x, y);
+                        disjointSet.union(x, y); //O(e)
 
                         // Añade el túnel a la solución
                         solActual.add(tunel);

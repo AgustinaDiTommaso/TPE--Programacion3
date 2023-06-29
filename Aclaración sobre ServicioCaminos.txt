@@ -1,2 +1,0 @@
-Consideramos que en un grafo dirigido, entre dos vértices puede existir dos arcos distintos en sentidos opuestos.
-En la clase ServicioCaminos, se pueden repetir vértices pero no arcos. Según lo mencionado anteriormente, si existe un arco con origen 2 y destino 3, y otro con los vértices al revés, son considerados como dos arcos individuales distintos.

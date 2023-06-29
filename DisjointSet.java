@@ -40,6 +40,13 @@ public class DisjointSet implements Cloneable{
             rank[rootX]++;
         }
     }
+    public int getCount(){// number of groups
+        int ans = 0;
+        for (int i = 0; i < parent.length; ++ i) {
+            if (i == parent[i]) ans ++;
+        }
+        return ans;
+    }
 
     public boolean mismoConjunto(int x, int y){
         return find(x)==find(y);

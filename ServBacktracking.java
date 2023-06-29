@@ -27,7 +27,7 @@ public class ServBacktracking {
         DisjointSet disjointSet = new DisjointSet(estaciones.size());
 
         int tunelActual = 0;
-        this.backtracking(solucionActual, tunelActual, disjointSet);
+        this.backtracking(solucionActual, tunelActual, disjointSet);//O(2^(n-1))
 
         return mejorSolucion;
     }
@@ -35,9 +35,9 @@ public class ServBacktracking {
     private void backtracking(List<Arco<Integer>> solActual, int tunelActual, DisjointSet disjointSet) {
         this.metrica++;
 
-        // Si la cantidad de elementos de la solución es igual a la cantidad de
-        // estaciones -1
-        if (solActual.size() == (estaciones.size() - 1)) {
+        // Si la cantidad de elementos de la solución es igual a la cantidad de estaciones -1
+        
+        if (solActual.size() == (estaciones.size() - 1) && disjointSet.getCount()==1) {
 
             // Guarda la distancia actual en la variable distanciaTotal
             this.distanciaMinima = this.distanciaActual;

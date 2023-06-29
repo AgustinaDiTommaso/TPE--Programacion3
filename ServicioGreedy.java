@@ -23,15 +23,14 @@ public class ServicioGreedy {
 
 
     public List<Arco<Integer>> greedy(){
-        // Ordena según la distancia de menor a mayor-- Complejidad O(n log n)
+        // Ordena según la distancia de menor a mayor-- Complejidad O(n log n) donde n es la cantidad de túneles
         Collections.sort(tuneles);
-        //this.metrica+=estaciones.size()*;
         
         //Crea un conjunto disjunto
         DisjointSet disjointSet= new DisjointSet(estaciones.size());  
 
         //Por cada túnel existente
-        for(int i=0; i<tuneles.size();i++){
+        for(int i=0; i<tuneles.size();i++){ //O(n*e) donde n es la cantidad de túneles y  e es la cantidad de estaciones
             Arco<Integer> tunel= this.tuneles.get(i);          
             this.metrica++;
             
@@ -43,10 +42,10 @@ public class ServicioGreedy {
                 int y= tunel.getVerticeDestino()-1;
 
                 //Si son distintos los padres
-                if(!(disjointSet.mismoConjunto(x,y))){
+                if(!(disjointSet.mismoConjunto(x,y))){ //O(e) donde e es la cantidad de estaciones
 
                     //Une los dos valores
-                    disjointSet.union(x, y);    
+                    disjointSet.union(x, y);    //O(e) donde e es la cantidad de estaciones
 
                     //Añade el túnel a la solución               
                     solucion.add(tunel);

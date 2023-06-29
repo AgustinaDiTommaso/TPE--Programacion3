@@ -23,8 +23,9 @@ public class ServicioGreedy {
 
 
     public List<Arco<Integer>> greedy(){
-        // Ordena según la distancia de menor a mayor
+        // Ordena según la distancia de menor a mayor-- Complejidad O(n log n)
         Collections.sort(tuneles);
+        //this.metrica+=estaciones.size()*;
         
         //Crea un conjunto disjunto
         DisjointSet disjointSet= new DisjointSet(estaciones.size());  
